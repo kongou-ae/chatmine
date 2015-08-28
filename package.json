@@ -10,10 +10,8 @@
   "author": "",
   "license": "BSD",
   "devDependencies": {
-    "electron-packager": "~5.0.2",
-    "request": "~2.61.0"
+    "electron-packager": "~5.0.2"
   },
   "dependencies": {
-    "request": "~2.61.0"
   }
 }
