@@ -2,21 +2,24 @@
 
 //var app = angular.module('myApp', ['ngResource','ngRoute'])
 angular.module('hogemine', ['ngResource','ngRoute'])
-// 以下を削除すると普通に動く
     .config(
         function ($routeProvider){
         $routeProvider
             .when('/', {
-                templateUrl: 'view/issue.html',
-                controller: 'MainController'
+                templateUrl: 'view/project.html',
+                controller: 'projectController'
             })
             .when('#/', {
-                templateUrl: 'view/issue.html',
-                controller: 'MainController'
+                templateUrl: 'view/project.html',
+                controller: 'projectController'
             })
-            .when('/issue/:issueId', {
-                templateUrl: 'view/issue-detail.html',
-                controller: 'MainController'
+            .when('/project/:projectId', {
+                templateUrl: 'view/ticket.html',
+                controller: 'ticketController'
+            })
+            .when('/project/:projectId/issue/:issueId', {
+                templateUrl: 'view/ticket_detail.html',
+                controller: 'ticketController'
             });
             //.otherwise({
             //    redirectTo: 'login'

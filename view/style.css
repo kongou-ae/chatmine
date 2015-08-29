@@ -9,6 +9,11 @@ html, body {
     margin-left:0px;
 }
 
+h1 {
+    font-weight: bold;     
+}
+
+
 .sidebar-fixed {
     background-color:#4d394b;   
     color : white;
@@ -22,6 +27,20 @@ html, body {
 
 .sidebar-fixed a{
     color : #ab9ba9;
+}
+
+.sidebar-fixed h3 {
+    font-size:20px;
+    color : #ab9ba9;
+    font-weight: bold;   
+    float:left;
+}
+
+.page{
+    margin-bottom:10px;
+    margin-top: 20px;
+    float: right;
+    padding-right: 50px;
 }
 
 .chatSpace {
@@ -44,6 +63,17 @@ html, body {
     background-color:white;
     top:0px;
 }
+
+.ticketList {
+    clear:both;
+    
+}
+
+p.issue {
+    margin-bottom:0px;
+    
+}
+
 
 .commentList {
     width: 100%;
