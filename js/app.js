@@ -13,6 +13,10 @@ angular.module('hogemine', ['ngResource','ngRoute'])
                 templateUrl: 'view/project.html',
                 controller: 'projectController'
             })
+            .when('/setting', {
+                templateUrl: 'view/setting.html',
+                controller: 'settingController'
+            })
             .when('/project/:projectId', {
                 templateUrl: 'view/ticket.html',
                 controller: 'ticketController'

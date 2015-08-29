@@ -1,9 +1,18 @@
 'use strict';
 
 angular.module('hogemine')
+    .controller('settingController',function($scope) {
+
+    $scope.submit = function () {
+        
+        window.localStorage.setItem('redmineUrl', $scope.redmineUrl );
+        window.localStorage.setItem('redmineApi', $scope.redmineApi );
+    }
+        
+    })
     .controller('projectController',function($scope, $http, $resource ) {
-        var apiKey = "5907364a93016593b3fa968881363dbb8263fc77";
-        var redmineUrl = "http://redmine20150707.ruby.iijgio.com/";
+        var apiKey = window.localStorage.getItem('redmineApi');
+        var redmineUrl = window.localStorage.getItem('redmineUrl');
 
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
         $http.get(redmineUrl +'projects.json').success(function(data){
@@ -24,9 +33,8 @@ angular.module('hogemine')
     })
     
     .controller('ticketController',function($scope, $http, $resource,$routeParams ) {
-        // var apiKey = window.localStorage.getItem('apiKey');
-        var apiKey = "5907364a93016593b3fa968881363dbb8263fc77";
-        var redmineUrl = "http://redmine20150707.ruby.iijgio.com/";
+        var apiKey = window.localStorage.getItem('redmineApi');
+        var redmineUrl = window.localStorage.getItem('redmineUrl');
         var count = "";
         var ticketAry = [];
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
@@ -73,8 +81,8 @@ angular.module('hogemine')
        
     })
     .controller('detailController',function($scope, $http, $resource, $routeParams ) {
-        var apiKey = "5907364a93016593b3fa968881363dbb8263fc77"
-        var redmineUrl = "http://redmine20150707.ruby.iijgio.com/"
+        var apiKey = window.localStorage.getItem('redmineApi');
+        var redmineUrl = window.localStorage.getItem('redmineUrl');
         
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
         var result = $resource( redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals',{},{
@@ -87,8 +95,8 @@ angular.module('hogemine')
     
         $scope.submit = function () {
             
-            var apiKey = "5907364a93016593b3fa968881363dbb8263fc77"
-            var redmineUrl = "http://redmine20150707.ruby.iijgio.com/"
+            var apiKey = window.localStorage.getItem('redmineApi');
+            var redmineUrl = window.localStorage.getItem('redmineUrl');
             var data = {};
             var issue = {};
             
