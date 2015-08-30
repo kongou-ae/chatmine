@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('hogemine')
-    .controller('settingController',function($scope) {
+    .controller('settingController',function($scope,$location) {
 
     $scope.submit = function () {
         
         window.localStorage.setItem('redmineUrl', $scope.redmineUrl );
         window.localStorage.setItem('redmineApi', $scope.redmineApi );
+        
+        location.reload()
     }
         
     })
@@ -104,27 +106,19 @@ angular.module('hogemine')
             data.issue = issue
 
             $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
+            // 履歴をPUTで更新
             $http.put(redmineUrl +'issues/' + $routeParams.issueId + '.json', JSON.stringify(data)).success(function() {
-            
-                $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
-                var result = $resource( redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals',{},{
-                    get:{
-                        method: 'GET'
-                    }
+                //更新後、GETで情報を取得し、描画する
+                $http.get( redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals').success(function(data){
+                    
+                    $scope.issue = data
                 });
-                
-                $scope.issue = result.get();
                 
                 $(function() {
                     $('body').animate({
                       scrollTop: $(document).height()
                     },1500);
-                /*
-                    //animationする必要がなければ
-                    setTimeout(function() {
-                        window.scroll(0,$(document).height());
-                    },0);
-                */
+
                 });
                 
                 // textareaを初期化
@@ -138,9 +132,17 @@ angular.module('hogemine')
             return $sce.trustAsHtml(text != null ? text.replace(/\n/g, '<br />') : '');
         };
     })
+    .filter('timeChange', function($sce) {
+        return function(text) {
+            var m = moment(text)
+            var formatDate = m.format('YYYY/MM/DD HH:mm');
+            return formatDate
+        };
+    })
     // paginationのフィルタ　※コピペ。slideがエラーになるの要確認
     .filter('startFrom', function() {
         return function(input, start) {
+            if (!input || !input.length) { return; }
             start = +start; //parse to int
             return input.slice(start);
         };

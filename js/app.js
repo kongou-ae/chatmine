@@ -21,7 +21,6 @@ angular.module('hogemine', ['ngResource','ngRoute'])
                     controller: 'ticketController'
                 });
             
-            console.log(apiKey)
             if (apiKey == null || redmineUrl == null) {
                  $routeProvider
                     .when('/', {
