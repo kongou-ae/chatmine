@@ -1,7 +1,7 @@
 'use strict';
 
 //var app = angular.module('myApp', ['ngResource','ngRoute'])
-angular.module('hogemine', ['ngResource','ngRoute'])
+angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap'])
     .config(
         function ($routeProvider){
             var apiKey = window.localStorage.getItem('redmineApi');

@@ -34,7 +34,7 @@ angular.module('hogemine')
 
     })
     
-    .controller('ticketController',function($scope, $http, $resource,$routeParams ) {
+    .controller('ticketController',function($scope, $http, $resource,$routeParams,$modal ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
         var count = "";
@@ -79,8 +79,19 @@ angular.module('hogemine')
                 $scope.data.push("Item "+i);
             }
         });
+        
+        // チケット作成ウィンドウを開く
+        $scope.openNewticket = function(){
+            $scope.newGuest = {};
+            $modal.open({
+                templateUrl: 'view/modal.html',
+                scope: $scope
+            });
+        }
+    })
+    .controller('createController',function($scope, $http, $resource, $routeParams ) {
+        
 
-       
     })
     .controller('detailController',function($scope, $http, $resource, $routeParams ) {
         var apiKey = window.localStorage.getItem('redmineApi');
@@ -126,12 +137,14 @@ angular.module('hogemine')
             })            
         }
     })
+
     // 改行を反映させるためのフィルタ
     .filter('newline', function($sce) {
         return function(text) {
             return $sce.trustAsHtml(text != null ? text.replace(/\n/g, '<br />') : '');
         };
     })
+    // 時刻表示を綺麗に出力するフィルタ
     .filter('timeChange', function($sce) {
         return function(text) {
             var m = moment(text)
@@ -139,7 +152,7 @@ angular.module('hogemine')
             return formatDate
         };
     })
-    // paginationのフィルタ　※コピペ。slideがエラーになるの要確認
+    // paginationのフィルタ
     .filter('startFrom', function() {
         return function(input, start) {
             if (!input || !input.length) { return; }

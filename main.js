@@ -4,6 +4,10 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 
+var http = require('http');
+var setup = require('proxy');
+var server = setup(http.createServer());
+
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
   {
@@ -50,6 +54,11 @@ app.on('ready', function() {
   // ブラウザ(Chromium)の起動, 初期画面のロード
   mainWindow = new BrowserWindow({width: 1000, height: 650,'node-integration': false});
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
+
+  server.listen(3128, function () {
+    var port = server.address().port;
+    console.log('HTTP(s) proxy server listening on port %d', port);
+  });
 
   mainWindow.on('closed', function() {
     mainWindow = null;

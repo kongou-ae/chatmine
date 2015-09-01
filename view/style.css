@@ -38,10 +38,13 @@ h1 {
 }
 
 .page{
-    margin-bottom:10px;
-    margin-top: 20px;
-    float: right;
-    padding-right: 50px;
+    margin-top: 30px;
+    margin-left: 120px;
+}
+
+.create{
+    float:right;
+    margin-top: -22px;
 }
 
 .chatSpace {
@@ -101,4 +104,15 @@ p.notes {
 
 .settingForm label {
     width:150px;
+}
+
+.modal {
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    margin-left:-150px;
+    margin-top:-200px;
+    width: 500px;
+    height: 400px;
+    display: block;
 }

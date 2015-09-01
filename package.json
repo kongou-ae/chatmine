@@ -13,5 +13,6 @@
     "electron-packager": "~5.0.2"
   },
   "dependencies": {
+    "proxy": "~0.2.3"
   }
 }
