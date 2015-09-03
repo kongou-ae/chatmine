@@ -13,6 +13,8 @@
     "electron-packager": "~5.0.2"
   },
   "dependencies": {
+    "cors-anywhere": "^0.2.5",
+    "node-rest-client": "^1.5.1",
     "proxy": "~0.2.3"
   }
 }
