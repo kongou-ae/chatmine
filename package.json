@@ -10,11 +10,15 @@
   "author": "",
   "license": "BSD",
   "devDependencies": {
-    "electron-packager": "~5.0.2"
+    "electron-packager": "~5.0.2",
+    "electron-prebuilt": "^0.31.1"
   },
   "dependencies": {
     "cors-anywhere": "^0.2.5",
+<<<<<<< HEAD
     "node-rest-client": "^1.5.1",
+=======
+>>>>>>> 5e68a610f90684c1cde357d19fb93f4a68270e68
     "proxy": "~0.2.3"
   }
 }

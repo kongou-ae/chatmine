@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('hogemine')
+<<<<<<< HEAD
     .controller('settingController',function($scope,$location) {
 
     $scope.submit = function () {
@@ -137,6 +138,8 @@ angular.module('hogemine')
             })
         }
     })
+=======
+>>>>>>> 5e68a610f90684c1cde357d19fb93f4a68270e68
 
     // 改行を反映させるためのフィルタ
     .filter('newline', function($sce) {
