@@ -8,6 +8,9 @@ var http = require('http');
 var setup = require('proxy');
 var server = setup(http.createServer());
 
+var cors_proxy = require('cors-anywhere');
+
+
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
   {
@@ -54,14 +57,23 @@ app.on('ready', function() {
   // ブラウザ(Chromium)の起動, 初期画面のロード
   mainWindow = new BrowserWindow({width: 1000, height: 650,'node-integration': false});
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
-
+  /*
   server.listen(3128, function () {
     var port = server.address().port;
     console.log('HTTP(s) proxy server listening on port %d', port);
+  });
+  */
+  var host = '127.0.0.1';
+  var port = 8080;
+  cors_proxy.createServer({
+      originWhitelist: [], // Allow all origins
+      //requireHeader: ['origin', 'x-requested-with'],
+      removeHeaders: ['cookie', 'cookie2']
+  }).listen(port, host, function() {
+      console.log('Running CORS Anywhere on ' + host + ':' + port);
   });
 
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
 });
-

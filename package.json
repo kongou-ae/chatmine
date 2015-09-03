@@ -10,9 +10,11 @@
   "author": "",
   "license": "BSD",
   "devDependencies": {
-    "electron-packager": "~5.0.2"
+    "electron-packager": "~5.0.2",
+    "electron-prebuilt": "^0.31.1"
   },
   "dependencies": {
+    "cors-anywhere": "^0.2.5",
     "proxy": "~0.2.3"
   }
 }
