@@ -5,9 +5,10 @@ var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 var cors_proxy = require('cors-anywhere');
 
-
-var cors_proxy = require('cors-anywhere');
-
+// debug用
+if (process.env.NODE_ENV !== 'production'){
+  require('longjohn');
+}
 
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
@@ -55,33 +56,16 @@ app.on('ready', function() {
   // ブラウザ(Chromium)の起動, 初期画面のロード
   mainWindow = new BrowserWindow({width: 1000, height: 650,'node-integration': false});
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
-<<<<<<< HEAD
 
-  var host = '127.0.0.1';
-  var port = 8080;
-
-  cors_proxy.createServer({
-      originWhitelist: [], // Allow all origins
-      //requireHeader: ['origin', 'x-requested-with'],
-      removeHeaders: ['cookie', 'cookie2']
-  }).listen(port, host, function() {
-      console.log('Running CORS Anywhere on ' + host + ':' + port);
-=======
-  /*
-  server.listen(3128, function () {
-    var port = server.address().port;
-    console.log('HTTP(s) proxy server listening on port %d', port);
->>>>>>> 5e68a610f90684c1cde357d19fb93f4a68270e68
-  });
-  */
   var host = '127.0.0.1';
   var port = 8080;
   cors_proxy.createServer({
       originWhitelist: [], // Allow all origins
       //requireHeader: ['origin', 'x-requested-with'],
       removeHeaders: ['cookie', 'cookie2']
-  }).listen(port, host, function() {
+  }).listen(port, host, function(err) {
       console.log('Running CORS Anywhere on ' + host + ':' + port);
+      console.log(err);
   });
 
   mainWindow.on('closed', function() {
