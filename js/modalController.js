@@ -5,8 +5,9 @@ angular.module('hogemine')
         var userAry = []
         var userObj = {}
 
+        // プルダウンにメンバー一覧を表示する
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
-        // とりえあずメンバーは１００人を超えない想定で
+        // とりえあずメンバーは１００人を超えない想定で。超えたらforで回す
         $http.get('http://localhost:8080/'+redmineUrl +'projects/'+$routeParams.projectId+'/memberships.json?limit=100').success(function(data){
 
             for (var i = 0; i < data.memberships.length; i++) {
@@ -21,28 +22,31 @@ angular.module('hogemine')
             $scope.ticket.Assign = "hoge"
         })
 
+        // チケット作成ボタンを押したら
         $scope.createTicket = function(){
 
             var transform = function(data){
-                    return $.param(data);
+                return $.param(data);
             }
 
             var params = {}
-            params.project_id = $routeParams.projectId;
-            params.subject = $scope.ticket.Name
-            params.description = $scope.ticket.description
-            //jsonの値に””がつかない
-            params.assigned_to_id = $scope.ticket.Assign
+            var issue = {}
+            issue.project_id = $routeParams.projectId;
+            issue.subject = $scope.ticket.Name
+            issue.description = $scope.ticket.description
+            issue.assigned_to_id = $scope.ticket.Assign + ''
+            params.issue = issue
 
-            console.log(params)
+            //POSTでissue登録
             $http({
             	method : 'POST',
             	url : 'http://localhost:8080/'+redmineUrl +'issues.json',
             	headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
             	transformRequest: transform,
             	data: params
-            }).success(function(data){
-                console.log(data)
+            }).success(function(){
+                //成功した旨を示すPOPUPを出したい
+                //
             })
 
         }

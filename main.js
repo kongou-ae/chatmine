@@ -10,7 +10,6 @@ var server = setup(http.createServer());
 
 var cors_proxy = require('cors-anywhere');
 
-
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
   {

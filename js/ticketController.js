@@ -55,5 +55,6 @@ angular.module('hogemine')
                 templateUrl: 'view/modal.html',
                 scope: $scope
             });
+            
         }
     })
