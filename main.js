@@ -5,11 +5,6 @@ var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 var cors_proxy = require('cors-anywhere');
 
-// debug用
-if (process.env.NODE_ENV !== 'production'){
-  require('longjohn');
-}
-
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
   {
