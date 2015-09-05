@@ -1,9 +1,11 @@
 angular.module('hogemine')
-    .controller('modalController',function($scope, $http, $resource, $routeParams ) {
+    .controller('modalController',function($scope, $http, $routeParams,$modalInstance ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
         var userAry = []
         var userObj = {}
+        // ここ大事
+        $scope.ticket = {}
 
         // プルダウンにメンバー一覧を表示する
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
@@ -18,8 +20,7 @@ angular.module('hogemine')
                 userAry.push(userObj);
             }
             $scope.Assigns = userAry;
-            // 初期選択を明記するエラーになる
-            $scope.ticket.Assign = "hoge"
+
         })
 
         // チケット作成ボタンを押したら
@@ -31,9 +32,10 @@ angular.module('hogemine')
 
             var params = {}
             var issue = {}
+
             issue.project_id = $routeParams.projectId;
             issue.subject = $scope.ticket.Name
-            issue.description = $scope.ticket.description
+            issue.description = $scope.ticket.Description
             issue.assigned_to_id = $scope.ticket.Assign + ''
             params.issue = issue
 
@@ -45,8 +47,11 @@ angular.module('hogemine')
             	transformRequest: transform,
             	data: params
             }).success(function(){
-                //成功した旨を示すPOPUPを出したい
-                //
+                // メッセージを表示
+                $scope.createResult  = "Success!!"
+                // フォームを初期化
+                $scope.ticket.Name = ""
+                $scope.ticket.Description = ""
             })
 
         }

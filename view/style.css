@@ -11,12 +11,12 @@ html, body {
 }
 
 h1 {
-    font-weight: bold;     
+    font-weight: bold;
 }
 
 
 .sidebar-fixed {
-    background-color:#4d394b;   
+    background-color:#4d394b;
     color : white;
     position: fixed;
     padding-left:25px;
@@ -33,7 +33,7 @@ h1 {
 .sidebar-fixed h3 {
     font-size:20px;
     color : #ab9ba9;
-    font-weight: bold;   
+    font-weight: bold;
     float:left;
 }
 
@@ -58,7 +58,7 @@ h1 {
 }
 
 .chatSpace span.username{
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 .ticketSummary {
@@ -70,12 +70,12 @@ h1 {
 
 .ticketList {
     clear:both;
-    
+
 }
 
 p.issue {
     margin-bottom:0px;
-    
+
 }
 
 
@@ -94,12 +94,12 @@ p.issue {
 
 textarea {
     min-width:55%;
-    
+
 }
 
 p.notes {
     margin-left:30px;
-    
+
 }
 
 .settingForm label {
@@ -115,4 +115,12 @@ p.notes {
     width: 500px;
     height: 400px;
     display: block;
+}
+
+p.result {
+    color :green;
+    width: 100px;
+    font-weight: bold;
+    float: left;
+    text-align: left;
 }

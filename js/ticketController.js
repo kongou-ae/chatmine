@@ -50,11 +50,11 @@ angular.module('hogemine')
 
         // チケット作成ウィンドウを開く
         $scope.openNewticket = function(){
-            $scope.newGuest = {};
             $modal.open({
                 templateUrl: 'view/modal.html',
+                controller:'modalController',
                 scope: $scope
             });
-            
+
         }
     })
