@@ -124,3 +124,11 @@ p.result {
     float: left;
     text-align: left;
 }
+.ticketSummary table {
+    width:60%;
+}
+
+.ticketSummary table tbody tr th, .ticketSummary table tbody tr td{
+    width:100px;
+    padding:4px;
+}
