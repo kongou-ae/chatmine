@@ -23,12 +23,9 @@
         <div ng-controller="detailController">
                 <div class="chatSpace">
                     <div class="ticketSummary">
-                        <h2>{{issue.issue.subject}}</h2>
+                        <h2><a href="{{redmineUrl}}issues/{{issue.issue.id}}" TARGET="_blank">{{issue.issue.subject}}</a></h2>
                         <table class="table table-bordered table-hover">
                             <tbody>
-                            <tr>
-                                <th>概要</th><td colspan="3">{{ issue.issue.description }}</td>
-                            </tr>
                             <tr>
                                 <th>ステータス</th><td>{{ issue.issue.status.name }}</td>
                                 <th>開始日</th><td>{{ issue.issue.start_date }}</td>

@@ -68,6 +68,11 @@ h1 {
     top:0px;
 }
 
+.ticketSummary h2 a {
+    color: black;
+
+}
+
 .ticketList {
     clear:both;
 
@@ -81,7 +86,7 @@ p.issue {
 
 .commentList {
     width: 100%;
-    margin-top:100px;
+    margin-top:200px;
     margin-bottom: 150px;
 }
 

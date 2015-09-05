@@ -5,6 +5,8 @@ angular.module('hogemine')
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
 
+        $scope.redmineUrl = redmineUrl
+
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
         var result = $resource('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals',{},{
             get:{
