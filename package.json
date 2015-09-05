@@ -1,6 +1,6 @@
 {
-  "name": "hogemine",
-  "version": "0.0.0",
+  "name": "chatmine",
+  "version": "0.0.1",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -15,7 +15,6 @@
     "longjohn": "^0.2.8"
   },
   "dependencies": {
-    "cors-anywhere": "^0.2.5",
-    "proxy": "~0.2.3"
+    "cors-anywhere": "^0.2.5"
   }
 }
