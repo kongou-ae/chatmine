@@ -4,17 +4,30 @@ angular.module('hogemine')
     .controller('detailController',function($scope, $http, $resource, $routeParams ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
+        var journalAry = [];
 
         $scope.redmineUrl = redmineUrl
 
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
-        var result = $resource('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals',{},{
-            get:{
-                method: 'GET'
-            }
-        });
+        $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals').success(function(data){
+            // チケット情報を表示するために、$scopeに結果を格納
+            $scope.issue = data
 
-        $scope.issue = result.get();
+            // チケットを古い順にソートするために、取得結果を別の配列に格納
+            for (var i = 0 ; i < data.issue.journals.length; i++){
+                journalAry.push(data.issue.journals[i])
+            }
+            // 配列をソートし、$scopeに格納
+            journalAry.sort(
+                function(a,b){
+                    if( a.id > b.id ) return 1;
+                    if( a.id < b.id ) return -1;
+                    return 0;
+                }
+            );
+            $scope.journals = journalAry
+
+        })
 
         $scope.submit = function () {
 
@@ -33,6 +46,20 @@ angular.module('hogemine')
                 $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals').success(function(data){
 
                     $scope.issue = data
+
+                    // チケットを古い順にソートするために、取得結果を別の配列に格納
+                    for (var i = 0 ; i < data.issue.journals.length; i++){
+                        journalAry.push(data.issue.journals[i])
+                    }
+                    // 配列をソートし、$scopeに格納
+                    journalAry.sort(
+                        function(a,b){
+                            if( a.id > b.id ) return 1;
+                            if( a.id < b.id ) return -1;
+                            return 0;
+                        }
+                    );
+                    $scope.journals = journalAry
                 });
 
                 $(function() {

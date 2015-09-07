@@ -42,7 +42,7 @@
                         </table>
                     </div>
                     <div class="commentList">
-                        <div class="comment" ng-repeat="comment in issue.issue.journals">
+                        <div class="comment" ng-repeat="comment in journals">
                             <p><span class="username">{{comment.user.name}} </span><span class="created_on">{{comment.created_on | timeChange}}</span></p>
                             <p class="notes" ng-bind-html="comment.notes | newline"></p>
                         </div>
