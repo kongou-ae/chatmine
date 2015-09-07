@@ -14,8 +14,8 @@
                 </div>
                 <div class="ticketList">
                     <ul style="list-style:none;margin-left: -20px;">
-                        <div ng-repeat="issue in issues | startFrom:currentPage*pageSize | limitTo:pageSize">
-                            <li><a href="#/project/{{projectId}}/issue/{{issue.id}}"><p class="issue">#{{issue.id}} {{issue.subject}}</p></a></li>
+                        <div ng-repeat="issue in issues |  startFrom:currentPage*pageSize | limitTo:pageSize ">
+                            <li><a href="#/project/{{projectId}}/issue/{{issue.id}}"><p class="issue"># {{issue.subject | cutDown }}</p></a></li>
                         </div>
                     </ul>
                 </div>
@@ -23,7 +23,7 @@
         <div ng-controller="detailController">
                 <div class="chatSpace">
                     <div class="ticketSummary">
-                        <h2><a href="{{redmineUrl}}issues/{{issue.issue.id}}" TARGET="_blank">{{issue.issue.subject}}</a></h2>
+                        <h2><a href="{{redmineUrl}}issues/{{issue.issue.id}}" TARGET="_blank">#{{issue.issue.id}} {{issue.issue.subject}}</a></h2>
                         <table class="table table-bordered table-hover">
                             <tbody>
                             <tr>

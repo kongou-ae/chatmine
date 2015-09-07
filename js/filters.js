@@ -22,4 +22,11 @@ angular.module('hogemine')
             start = +start; //parse to int
             return input.slice(start);
         };
+    })
+    // チケットリストの表示を特定文字列にそろえるフィルタ
+    .filter('cutDown', function(){
+        return function(text){
+            var char = text.match(/.{0,12}/);
+            return char[0] + "…"
+        }
     });

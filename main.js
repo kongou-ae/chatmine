@@ -17,14 +17,12 @@ var menu = Menu.buildFromTemplate([
   {
     label: 'Setting',
     submenu: [
-      {label: 'Redmine Settings'},
-    ]
-  },
-  {
-    label: 'Edit',
-    submenu: [
-      {label: 'Copy', accelerator: 'Command+C', selector: 'copy'},
-      {label: 'Paste', accelerator: 'Command+V', selector: 'paste'}
+      {label: 'Redmine Settings',click:function () {
+          //エラーになる
+          window.localStorage.removeItem('redmineUrl');
+          window.localStorage.removeItem('redmineApi');
+          mainWindow.loadUrl('/');
+      }}
     ]
   },
   {    label: 'View',
