@@ -13,3 +13,7 @@ deployment:
       - git clone git@github.com:kongou-ae/chatmine.git chatmine
       - cd chatmine && npm install
       - cd chatmine && ./node_modules/.bin/gulp deploy
+      - git add chatmine-win32-ia32.zip chatmine-win32-x64.zip
+      - git commit -m "release"
+      - git tag -a `cat package.json | jq .version -r` -m "release"
+      - git push origin master
