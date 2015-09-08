@@ -75,14 +75,15 @@ h1 {
 
 .ticketList {
     clear:both;
-
 }
 
-p.issue {
-    margin-bottom:0px;
-
+p.issue, p.project{
+    margin-bottom: 0px;
+    width: 220px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-
 
 .commentList {
     width: 100%;
