@@ -10,7 +10,7 @@
                 <div class="ticketList">
                     <ul style="list-style:none;margin-left: -20px;">
                         <div ng-repeat="project in projects | startFrom:currentPage*pageSize | limitTo:pageSize">
-                            <li><a href="#/project/{{project.id}}"><p class="issue">#{{project.id}} {{project.name}}</p></a></li>
+                            <li><a href="#/project/{{project.id}}"><p class="project">#{{project.id}} {{project.name}}</p></a></li>
                         </div>
                     </ul>
                 </div>
