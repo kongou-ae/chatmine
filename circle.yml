@@ -16,4 +16,4 @@ deployment:
       - git add chatmine-win32-ia32.zip chatmine-win32-x64.zip
       - git commit -m "release"
       - git tag -a `cat package.json | jq .version -r` -m "release"
-      - git push origin master
+      - git push origin `cat package.json | jq .version -r`
