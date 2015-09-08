@@ -11,5 +11,5 @@ deployment:
     branch: master
     commands:
       - git clone git@github.com:kongou-ae/chatmine.git chatmine
-      - cd public && npm install
-      - cd public && ./node_modules/.bin/gulp deploy
+      - cd chatmine && npm install
+      - cd chatmine && ./node_modules/.bin/gulp deploy
