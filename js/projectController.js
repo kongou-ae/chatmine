@@ -20,7 +20,6 @@ angular.module('hogemine')
                           projectAry.push(data.projects[j])
                       }
                       $scope.projects = projectAry;
-                      console.log(projectAry)
                 })
             }
         })
