@@ -35,6 +35,7 @@ angular.module('hogemine')
             var redmineUrl = window.localStorage.getItem('redmineUrl');
             var data = {};
             var issue = {};
+            journalAry = []
 
             issue.notes = $scope.journal
             data.issue = issue

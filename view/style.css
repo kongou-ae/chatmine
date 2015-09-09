@@ -68,6 +68,14 @@ h1 {
     top:0px;
 }
 
+.ticketSummary h2{
+    width: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+}
+
 .ticketSummary h2 a {
     color: black;
 
