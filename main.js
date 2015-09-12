@@ -58,7 +58,6 @@ app.on('ready', function() {
       removeHeaders: ['cookie', 'cookie2']
   }).listen(port, host, function(err) {
       console.log('Running CORS Anywhere on ' + host + ':' + port);
-      console.log(err);
   });
 
   mainWindow.on('closed', function() {

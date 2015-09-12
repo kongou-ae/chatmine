@@ -5,11 +5,11 @@
     <title>chatmine</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link href="view/style.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script>window.$ = window.jQuery = require('./js/jquery-1.11.3.min.js');</script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
@@ -23,17 +23,18 @@
     <script src="js/detailController.js"></script>
     <script src="js/modalController.js"></script>
 
-    </script>
-    </script>
-
 
 </head>
 <body>
-
 <div class="container">
-
-    <div ng-view></div>
+    <div class="row">
+        <div class="sidebar-fixed">
+            <div ui-view="sidebarView"></div>
+        </div>
+        <div class="chatSpace">
+            <div ui-view="chatView"></div>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
