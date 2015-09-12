@@ -8,7 +8,7 @@ angular.module('hogemine')
             window.localStorage.setItem('redmineUrl', $scope.redmineUrl );
             window.localStorage.setItem('redmineApi', $scope.redmineApi );
 
-            location.reload()
+            location.replace('file://' + __dirname + '/index.html')
         }
 
     })

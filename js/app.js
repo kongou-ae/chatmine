@@ -12,9 +12,13 @@ angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap','ui.router'])
                     url:"/",
                     views:{
                         sidebarView:{
+                            controller: "projectController",
+                            templateUrl: "view/project_sidebar.html"
+                        },
+                        chatView:{
                             controller: "settingController",
-                                templateUrl: "view/setting.html"
-                            }
+                            templateUrl: "view/setting.html"
+                        }
                     }
                 })
         } else {
