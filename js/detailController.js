@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hogemine')
-    .controller('detailController',function($scope, $http, $resource, $routeParams ) {
+    .controller('detailController',function($scope, $http, $resource, $stateParams ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
         var journalAry = [];
@@ -9,7 +9,7 @@ angular.module('hogemine')
         $scope.redmineUrl = redmineUrl
 
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
-        $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals').success(function(data){
+        $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $stateParams.issueId + '.json?include=journals').success(function(data){
             // チケット情報を表示するために、$scopeに結果を格納
             $scope.issue = data
 
@@ -42,9 +42,9 @@ angular.module('hogemine')
 
             $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
             // 履歴をPUTで更新
-            $http.put('http://localhost:8080/'+redmineUrl +'issues/' + $routeParams.issueId + '.json', JSON.stringify(data)).success(function() {
+            $http.put('http://localhost:8080/'+redmineUrl +'issues/' + $stateParams.issueId + '.json', JSON.stringify(data)).success(function() {
                 //更新後、GETで情報を取得し、描画する
-                $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $routeParams.issueId + '.json?include=journals').success(function(data){
+                $http.get('http://localhost:8080/'+ redmineUrl +'issues/' + $stateParams.issueId + '.json?include=journals').success(function(data){
 
                     $scope.issue = data
 

@@ -2,7 +2,7 @@
 
 angular.module('hogemine')
 
-    .controller('ticketController',function($scope, $http, $resource,$routeParams,$modal,$q ) {
+    .controller('ticketController',function($scope, $http, $resource,$stateParams,$modal,$q ) {
 
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
@@ -10,16 +10,16 @@ angular.module('hogemine')
         var ticketAry = [];
 
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
-        $scope.projectId = $routeParams.projectId;
+        $scope.projectId = $stateParams.projectId;
 
         var async_1 = function(){
-            $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $routeParams.projectId)
+            $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $stateParams.projectId)
                 .success(function(data){
                     var d = $q.defer();
                     count =  Math.ceil(data.total_count/data.limit);
 
                     for (var i = 1; i <= count; i++) {
-                        $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $routeParams.projectId + '&page=' + i)
+                        $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $stateParams.projectId + '&page=' + i)
                             .success(function(data){
                                 for(var j=0; j < data.issues.length; j++) {
                                     ticketAry.push(data.issues[j]);
@@ -52,7 +52,7 @@ angular.module('hogemine')
         })
 
         // チケットのトータル数を取得し、ページ数の計算に利用する
-        $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $routeParams.projectId).success(function(data){
+        $http.get('http://localhost:8080/'+redmineUrl +'issues.json?project_id='+ $stateParams.projectId).success(function(data){
 
             $scope.currentPage = 0;
             $scope.pageSize = 20;

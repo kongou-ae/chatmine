@@ -1,50 +1,52 @@
 'use strict';
 
 //var app = angular.module('myApp', ['ngResource','ngRoute'])
-angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap'])
-    .config(
-        function ($routeProvider){
-            var apiKey = window.localStorage.getItem('redmineApi');
-            var redmineUrl = window.localStorage.getItem('redmineUrl');
+angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap','ui.router'])
+    .config(['$stateProvider', '$urlRouterProvider',function ($stateProvider, $urlRouterProvider) {
+        var apiKey = window.localStorage.getItem('redmineApi');
+        var redmineUrl = window.localStorage.getItem('redmineUrl');
 
-            $routeProvider
-                .when('/setting', {
-                    templateUrl: 'view/setting.html',
-                    controller: 'settingController'
+        if (apiKey == null || redmineUrl == null) {
+            $stateProvider
+                .state('main', {
+                    url:"/",
+                    views:{
+                        sidebarView:{
+                            controller: "settingController",
+                                templateUrl: "view/setting.html"
+                            }
+                    }
                 })
-                .when('/project/:projectId', {
-                    templateUrl: 'view/ticket.html',
-                    controller: 'ticketController'
+        } else {
+            $stateProvider
+                .state('main', {
+                    url: "/",
+                    views:{
+                        sidebarView:{
+                            controller: "projectController",
+                            templateUrl: "view/project_sidebar.html"
+                        }
+                    }
                 })
-                .when('/project/:projectId/issue/:issueId', {
-                    templateUrl: 'view/ticket_detail.html',
-                    controller: 'ticketController'
-                });
-            
-            if (apiKey == null || redmineUrl == null) {
-                 $routeProvider
-                    .when('/', {
-                        templateUrl: 'view/setting.html',
-                        controller: 'settingController'
-                    })
-                    .when('#/', {
-                        templateUrl: 'view/setting.html',
-                        controller: 'settingController'
-                    });
-            } else {
-                $routeProvider
-                    .when('/', {
-                        templateUrl: 'view/project.html',
-                        controller: 'projectController'
-                    })
-                    .when('#/', {
-                        templateUrl: 'view/project.html',
-                        controller: 'projectController'
-                    });
-            }
-            //.otherwise({
-            //    redirectTo: 'login'
-            //});
         }
-        
-    );
+
+        $stateProvider
+            .state('project', {
+                url:"/project/:projectId",
+                views:{
+                    sidebarView:{
+                        controller: "ticketController",
+                        templateUrl: "view/ticket_sidebar.html"
+                    }
+                }
+            })
+            .state('project.issue', {
+                url:"/issue/:issueId",
+                views:{
+                    "chatView@":{
+                        controller: "detailController",
+                        templateUrl: "view/ticket_detail.html"
+                    }
+                }
+            })
+    }]);

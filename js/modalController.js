@@ -1,5 +1,5 @@
 angular.module('hogemine')
-    .controller('modalController',function($scope, $http, $routeParams,$modalInstance ) {
+    .controller('modalController',function($scope, $http, $stateParams,$modalInstance ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
         var userAry = []
@@ -10,7 +10,7 @@ angular.module('hogemine')
         // プルダウンにメンバー一覧を表示する
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
         // とりえあずメンバーは１００人を超えない想定で。超えたらforで回す
-        $http.get('http://localhost:8080/'+redmineUrl +'projects/'+$routeParams.projectId+'/memberships.json?limit=100').success(function(data){
+        $http.get('http://localhost:8080/'+redmineUrl +'projects/'+$stateParams.projectId+'/memberships.json?limit=100').success(function(data){
 
             for (var i = 0; i < data.memberships.length; i++) {
                 // 初期化
@@ -33,7 +33,7 @@ angular.module('hogemine')
             var params = {}
             var issue = {}
 
-            issue.project_id = $routeParams.projectId;
+            issue.project_id = $stateParams.projectId;
             issue.subject = $scope.ticket.Name
             issue.description = $scope.ticket.Description
             issue.assigned_to_id = $scope.ticket.Assign + ''
