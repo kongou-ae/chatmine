@@ -1,0 +1,6 @@
+<form ng-submit="commit()" role="form" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+    <div class="form-group">
+        <label>Select Close Status</label>
+        <select ng-model="setting.close" ng-options="i.id as i.name for i in issue_statuses"></select>
+    </div>
+</form>

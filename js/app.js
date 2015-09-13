@@ -6,14 +6,14 @@ angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap','ui.router'])
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
 
+        // ローカルストレージに値が入っていない場合は設定画面に遷移
         if (apiKey == null || redmineUrl == null) {
             $stateProvider
                 .state('main', {
                     url:"/",
                     views:{
                         sidebarView:{
-                            controller: "projectController",
-                            templateUrl: "view/project_sidebar.html"
+                            templateUrl: "view/none_sidebar.html"
                         },
                         chatView:{
                             controller: "settingController",
@@ -33,6 +33,16 @@ angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap','ui.router'])
                     }
                 })
         }
+        $stateProvider
+            .state('main.settingDetail', {
+                url:"/detailsetting",
+                views:{
+                    detailSetting:{
+                        controller: "settingDetailController",
+                        templateUrl: "view/setting_detail.html"
+                    }
+                }
+            })
 
         $stateProvider
             .state('project', {
