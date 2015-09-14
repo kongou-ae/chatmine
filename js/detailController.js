@@ -38,6 +38,9 @@ angular.module('hogemine')
             journalAry = []
 
             issue.notes = $scope.journal
+            if ($scope.journal === '!close'){
+                issue.status_id = window.localStorage.getItem('closeStatusId');
+            }
             data.issue = issue
 
             $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
