@@ -21,8 +21,14 @@ angular.module('hogemine')
                     }
                 }
                 $scope.issue_statuses = issue_statusesAry
-                console.log($scope.issue_statuses);
             });
+
+            $scope.commit = function(){
+                window.localStorage.setItem('closeStatusId', $scope.setting.close );
+                location.replace('file://' + __dirname + '/index.html')
+                //$state.go('project')
+            }
+
                 //詳細ページを開く
                 //location.replace('file://' + __dirname + '/index.html')
         })
