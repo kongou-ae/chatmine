@@ -1,5 +1,5 @@
 angular.module('hogemine')
-    .controller('modalController',function($scope, $http, $stateParams,$modalInstance ) {
+    .controller('modalController',function($scope, $http, $stateParams,$modalInstance,$state ) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
         var userAry = []

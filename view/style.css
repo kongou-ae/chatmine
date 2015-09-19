@@ -21,7 +21,7 @@ h1 {
     position: fixed;
     padding-left:25px;
     padding-right:25px;
-    width:300px;
+    width:315px;
     height:100%;
     z-index:0;
 }
@@ -43,6 +43,12 @@ h1 {
 }
 
 .create{
+    float:right;
+    margin-top: -22px;
+    margin-right: 30px;
+}
+
+.refresh{
     float:right;
     margin-top: -22px;
 }
