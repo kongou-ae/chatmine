@@ -8,6 +8,7 @@ dependencies:
     - git config --global user.name "CircleCI"
     - git config --global user.email "circleci@example.com"
     - sudo apt-get install jq -y
+    - sudo apt-get install g++ gyp
 
 deployment:
   master:
