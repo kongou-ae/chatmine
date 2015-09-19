@@ -1,6 +1,6 @@
 {
   "name": "chatmine",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "BSD",
   "devDependencies": {
+    "bcrypt": "^0.8.5",
     "del": "^2.0.1",
     "electron-packager": "~5.0.2",
     "electron-prebuilt": "^0.32.0",
