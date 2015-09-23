@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },
-  "author": "",
-  "license": "BSD",
+  "author": "kongou-ae",
+  "license": "MIT",
   "devDependencies": {
     "bcrypt": "^0.8.5",
     "del": "^2.0.1",
