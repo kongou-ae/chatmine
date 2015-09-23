@@ -4,11 +4,7 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 var cors_proxy = require('cors-anywhere');
-//var Module  = require('module')
-//var path = require('path');
 
-//Module.globalPaths.push(path.resolve(__dirname +'/resources/app/node_modules/cors-anywhere/lib/' ))
-//console.log(require('module').globalPaths);
 // アプリケーションメニュー設定
 var menu = Menu.buildFromTemplate([
   {
