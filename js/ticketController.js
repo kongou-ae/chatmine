@@ -2,7 +2,7 @@
 
 angular.module('hogemine')
 
-    .controller('ticketController',function($scope, $http, $resource,$stateParams,$modal,$q ) {
+    .controller('ticketController',function($scope, $http, $resource,$stateParams,$modal,$q,$state ) {
 
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
@@ -74,5 +74,9 @@ angular.module('hogemine')
                 controller:'modalController',
                 scope: $scope
             });
+        };
+        // リロード処理
+        $scope.refresh = function(){
+            $state.reload()
         };
     });
