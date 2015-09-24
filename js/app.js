@@ -5,6 +5,7 @@ angular.module('hogemine', ['ngResource','ngRoute','ui.bootstrap','ui.router'])
     .config(['$stateProvider', '$urlRouterProvider',function ($stateProvider, $urlRouterProvider) {
         var apiKey = window.localStorage.getItem('redmineApi');
         var redmineUrl = window.localStorage.getItem('redmineUrl');
+        var closeStatusId = window.localStorage.getItem('closeStatusId'); 
 
         // ローカルストレージに値が入っていない場合は設定画面に遷移
         if (apiKey == null || redmineUrl == null || closeStatusId == null) {
