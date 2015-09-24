@@ -7,6 +7,9 @@ angular.module('hogemine')
         // ここ大事
         $scope.ticket = {}
 
+//        var element = document.getElementById("modal-forcus");
+//        element.focus();
+
         // プルダウンにメンバー一覧を表示する
         $http.defaults.headers.common["X-Redmine-API-Key"] = apiKey;
         // とりえあずメンバーは１００人を超えない想定で。超えたらforで回す
