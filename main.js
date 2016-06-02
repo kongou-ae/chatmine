@@ -25,7 +25,8 @@ var menu = Menu.buildFromTemplate([
       }}
     ]
   },
-  {    label: 'View',
+  { 
+    label: 'Options',
     submenu: [
       { label: 'Reload', accelerator: 'Command+R', click: function() { BrowserWindow.getFocusedWindow().reloadIgnoringCache(); } },
       { label: 'Toggle DevTools', accelerator: 'Alt+Command+I', click: function() { BrowserWindow.getFocusedWindow().toggleDevTools(); } }

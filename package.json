@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "start": "./node_modules/.bin/electron ."
   },
   "author": "kongou-ae",
   "license": "MIT",
@@ -23,6 +24,8 @@
     "run-sequence": "^1.1.2"
   },
   "dependencies": {
-    "cors-anywhere": "^0.2.5"
+    "bootstrap": "^3.3.6",
+    "cors-anywhere": "^0.2.5",
+    "mithril": "^0.2.0"
   }
 }
