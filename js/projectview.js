@@ -4,14 +4,16 @@ projectView.vm = {
     init: function(){
         var credential = login.model.loadCredential()
         var redmineUrl = credential.url
+        projectView.vm.redmineUsername = m.prop(credential.userName)
+
         var redmineApiKey = function(xhr) {
             xhr.setRequestHeader("X-Redmine-API-Key", credential.key);
-        };   
+        };
 
         //todo:100件以上取得できるようにする
-        projectView.vm.projectAry = m.prop([]);  
+        projectView.vm.projectAry = m.prop([]);
         m.request({
-            method: "GET", 
+            method: "GET",
             url: "http://localhost:8080/" + redmineUrl + "/projects.json?limit=100",
             config: redmineApiKey }
         ).then(function(responce){
@@ -19,9 +21,9 @@ projectView.vm = {
                 projectView.vm.projectAry().push(responce.projects[j])
             }
         });
-        
-        
-               
+
+
+
     }
 }
 
@@ -39,6 +41,7 @@ projectView.view = function() {
                 m("h1",[
                     m("a",{href:'/',config:m.route},"Chatmine")
                 ]),
+                m("h4",projectView.vm.redmineUsername()),
                 m("h3","PROJECT"),
                 m("div.sidebar-list",[
                     mpaginate.view(projectView.vm.mpaginate),
@@ -46,12 +49,12 @@ projectView.view = function() {
                         projectView.vm.mpaginate.paginated().map(function(item) {
                             return m("li",[
                                 m("a",{href:"/project/"+ item.id,config:m.route },[
-                                    m("p.project", "#" + item.id + " " + item.name)                      
+                                    m("p.project", "#" + item.id + " " + item.name)
                                 ])
-                            ])                    
+                            ])
                         })
                     ])
-                ]) 
+                ])
             ])
-    ] 
+    ]
 };

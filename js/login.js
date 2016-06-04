@@ -23,6 +23,7 @@ login.model.loadCredential = function(){
     var credential = {}
     credential.url = localStorage.getItem('redmineUrl')
     credential.key = localStorage.getItem('redmineApiKey')
+    credential.userName = localStorage.getItem('redmineUsername')
     return credential
 }
 

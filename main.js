@@ -21,6 +21,7 @@ var menu = Menu.buildFromTemplate([
           //エラーになる
           //window.localStorage.removeItem('redmineUrl');
           //window.localStorage.removeItem('redmineApi');
+          //mainWindow.loadUrl('file://' + __dirname + '/index.html');
       }}
     ]
   },
