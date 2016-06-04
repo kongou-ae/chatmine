@@ -1,4 +1,3 @@
-var m = require('mithril');
 m.route.mode = "hash";
 m.route(document.getElementById("root"), "/",
     {

@@ -19,13 +19,12 @@ var menu = Menu.buildFromTemplate([
     submenu: [
       {label: 'Redmine Settings',click:function () {
           //エラーになる
-          window.localStorage.removeItem('redmineUrl');
-          window.localStorage.removeItem('redmineApi');
-          mainWindow.loadUrl('/');
+          //window.localStorage.removeItem('redmineUrl');
+          //window.localStorage.removeItem('redmineApi');
       }}
     ]
   },
-  { 
+  {
     label: 'Options',
     submenu: [
       { label: 'Reload', accelerator: 'Command+R', click: function() { BrowserWindow.getFocusedWindow().reloadIgnoringCache(); } },
