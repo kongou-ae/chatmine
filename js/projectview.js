@@ -20,10 +20,13 @@ projectView.vm = {
             for (var j = 0; j < responce.projects.length; j++){
                 projectView.vm.projectAry().push(responce.projects[j])
             }
+            // ソートする
+            projectView.vm.projectAry().sort(function(a,b){
+                if(a.id < b.id ) return -1;
+                if(a.id > b.id ) return 1;
+                return 0
+            })
         });
-
-
-
     }
 }
 
@@ -32,7 +35,6 @@ projectView.controller = function(){
     projectView.vm.mpaginate = new mpaginate.controller(projectView.vm.projectAry, {
         "rowsPerPage" : "20"
     });
-
 }
 
 projectView.view = function() {
