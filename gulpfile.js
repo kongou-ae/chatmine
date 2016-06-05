@@ -14,9 +14,9 @@ gulp.task('copyJs', function() {
     .pipe(gulp.dest('src/js/'));
 });
 
-gulp.task('copyView', function() {
-  return gulp.src(['view/*'])
-    .pipe(gulp.dest('src/view/'));
+gulp.task('copyCss', function() {
+  return gulp.src(['css/*'])
+    .pipe(gulp.dest('src/css/'));
 });
 
 gulp.task('copyFile', function() {
@@ -69,7 +69,7 @@ gulp.task('zip64', function() {
 
 gulp.task('deploy', function(callback) {
   return runSequence(
-    ['copyJs','copyView','copyFile'], // ソースをビルド用ディレクトリにコピー
+    ['copyJs','copyCss','copyFile'], // ソースをビルド用ディレクトリにコピー
     ['moduleInstall'], //ビルド用ディレクトリにnode_moduleをインストール
     ['electron-package'], // パッケージ作成
     ['zip32'],//パッケージをzip化
@@ -83,10 +83,10 @@ gulp.task('deploy', function(callback) {
 gulp.task('server',function () {
     // Start browser process
     electron.start();
-  
+
     // Restart browser process
     gulp.watch('./main.js', electron.restart);
-  
+
     // Reload renderer process
     gulp.watch(['./js/*.js'], electron.reload);
 })
