@@ -10,6 +10,12 @@ dependencies:
     - sudo apt-get install jq -y
     - sudo apt-get install gyp
 
+test:
+  override:
+    - npm install
+    - ./node_modules/.bin/electron-rebuild
+    - ./node_modules/.bin/gulp deploy
+
 deployment:
   master:
     branch: master
