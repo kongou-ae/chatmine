@@ -20,9 +20,6 @@ deployment:
   master:
     branch: master
     commands:
-      - npm install
-      - ./node_modules/.bin/electron-rebuild
-      - ./node_modules/.bin/gulp deploy
       - git add chatmine-win32-ia32.zip chatmine-win32-x64.zip
       - git commit -m "release"
       - git tag -a `cat package.json | jq .version -r` -m "release"
