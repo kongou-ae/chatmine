@@ -1,6 +1,6 @@
 {
   "name": "chatmine",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "main.js",
   "scripts": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "cors-anywhere": "^0.2.5",
+    "electron-connect": "^0.4.2",
     "mithril": "^0.2.0"
   }
 }
