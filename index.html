@@ -1,41 +1,25 @@
-<!DOCTYPE html>
-<html ng-app="hogemine">
-<head>
-    <meta charset="UTF-8">
-    <title>chatmine</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <link href="view/style.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.6.0/ui-bootstrap-tpls.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.0/jquery.nicescroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/settingController.js"></script>
-    <script src="js/projectController.js"></script>
-    <script src="js/ticketController.js"></script>
-    <script src="js/detailController.js"></script>
-    <script src="js/modalController.js"></script>
-    <script src="js/settingDetailController.js"></script>
-
-
-</head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="sidebar-fixed">
-            <div ui-view="sidebarView"></div>
-        </div>
-        <div class="chatSpace">
-            <div ui-view="chatView"></div>
-        </div>
-    </div>
-</div>
-</body>
+<!doctype html>
+<html lang="ja">
+	<head>
+		<title>Chatmine</title>
+		<meta charset="UTF-8">
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="./node_modules/mithril/mithril.min.js"></script>
+		<link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="./css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<div class="raw" id="root">
+			</div>
+		</div>	
+		<script src="./js/login.js"></script>
+		<script src="./js/projectview.js"></script>
+		<script src="./js/credential.js"></script>
+		<script src="./js/issueview.js"></script>
+		<script src="./js/issuedetail.js"></script>					
+		<script src="./js/router.js"></script>
+		<script src="./js/mpaginate.js"></script>
+		<script src="./js/modal.js"></script>
+	</body>
 </html>

@@ -6,6 +6,7 @@ var packageJson = require('./package.json');
 var packager = require('electron-packager');
 var del = require('del');
 var archiver = require('gulp-archiver');
+var electron = require('electron-connect').server.create();
 
 
 gulp.task('copyJs', function() {
@@ -78,3 +79,14 @@ gulp.task('deploy', function(callback) {
     callback
   );
 });
+
+gulp.task('server',function () {
+    // Start browser process
+    electron.start();
+  
+    // Restart browser process
+    gulp.watch('./main.js', electron.restart);
+  
+    // Reload renderer process
+    gulp.watch(['./js/*.js'], electron.reload);
+})
