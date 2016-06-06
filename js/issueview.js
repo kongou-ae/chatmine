@@ -43,6 +43,7 @@ issueView.view = function() {
                 m("h1",[
                     m("a",{href:'/project',config:m.route},"Chatmine")
                 ]),
+                m("h4",projectView.vm.redmineUsername()),
                 m("h3","TICKET"),
                 //todo:更新ボタンをつけるか、チケットを作ったら自動リロードされるようにする
                 modal.view(),
