@@ -6,34 +6,34 @@ issueDetail.vm = {
         var redmineUrl = credential.url
         var redmineApiKey = function(xhr) {
             xhr.setRequestHeader("X-Redmine-API-Key", credential.key);
-        };   
-        issueDetail.vm.issuesAry = m.prop([]);   
+        };
+        issueDetail.vm.issuesAry = m.prop([]);
         issueDetail.vm.redmineUrl = m.prop(redmineUrl)
         m.request({
-            method: "GET", 
+            method: "GET",
             url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
             config: redmineApiKey }
         ).then(function(responce){
             for (var j = 0; j < responce.issues.length; j++){
                 issueDetail.vm.issuesAry().push(responce.issues[j])
             }
-        });  
+        });
 
-        issueDetail.vm.issueDetailAry = m.prop();          
+        issueDetail.vm.issueDetailAry = m.prop();
         m.request({
-            method: "GET", 
+            method: "GET",
             url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
             config: redmineApiKey }
         ).then(function(responce){
             if ("assigned_to" in responce.issue) {
-                issueDetail.vm.issueDetailAry(responce.issue)                
+                issueDetail.vm.issueDetailAry(responce.issue)
             } else {
                 responce.issue.assigned_to = {name:"None"}
-                issueDetail.vm.issueDetailAry(responce.issue) 
+                issueDetail.vm.issueDetailAry(responce.issue)
             }
-            
-        });   
-        
+
+        });
+
         // todo:なんか汚い。もう少しいい感じにしたい
         issueDetail.vm.textarea = m.prop("");
         issueDetail.vm.update = function(){
@@ -41,33 +41,33 @@ issueDetail.vm = {
             var issue = {};
             issue.notes = issueDetail.vm.textarea()
             data.issue = issue
-            
+
             m.request({
-                method: "PUT", 
+                method: "PUT",
                 url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json",
                 config: redmineApiKey,
                 data: data }
             ).then(function(responce){
                 m.request({
-                    method: "GET", 
+                    method: "GET",
                     url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
                     config: redmineApiKey }
                 ).then(function(responce){
                     if ("assigned_to" in responce.issue) {
                         issueDetail.vm.issueDetailAry(responce.issue)
                         issueDetail.vm.textarea("")
-                        scrollToButtom()                                     
+                        scrollToButtom()
                     } else {
                         responce.issue.assigned_to = {name:"None"}
                         issueDetail.vm.issueDetailAry(responce.issue)
                         issueDetail.vm.textarea("")
-                        scrollToButtom()  
-                    }       
+                        scrollToButtom()
+                    }
                 });
-               
-            });             
-                
-        }.bind(this)        
+
+            });
+
+        }.bind(this)
     }
 }
 
@@ -85,7 +85,7 @@ function scrollToButtom() {
 	$('body').animate({
     	scrollTop: $(document).height()
     },1500);
-};    
+};
 
 issueDetail.view = function() {
     return [
@@ -93,6 +93,7 @@ issueDetail.view = function() {
                 m("h1",[
                     m("a",{href:'/project',config:m.route},"Chatmine")
                 ]),
+                m("h4",projectView.vm.redmineUsername()),
                 m("h3","TICKET"),
                 modal.view(),
                 m("div.sidebar-list",[
@@ -101,7 +102,7 @@ issueDetail.view = function() {
                         issueView.vm.mpaginate.paginated().map(function(item) {
                             return m("li",[
                                 m("a",{href:"/project/" + m.route.param("projectId") + "/issue/"+ item.id,config:m.route },[
-                                    m("p.issue", "#" + item.id + " " + item.subject)                      
+                                    m("p.issue", "#" + item.id + " " + item.subject)
                                 ])
                             ])
                         })
@@ -127,7 +128,7 @@ issueDetail.view = function() {
                             m("tr",[
                                 m("th","担当者"),m("td",issueDetail.vm.issueDetailAry().assigned_to.name),
                                 m("th","進捗"),m("td",issueDetail.vm.issueDetailAry().done_ratio )
-                            ])                           
+                            ])
                         ])
                     ]),
                 ]),
@@ -140,7 +141,7 @@ issueDetail.view = function() {
                             ]),
                             m("p.notes",journal.notes)
                         ])
-                    })           
+                    })
                 ]),
                 m("div.commentEnd"),
                 m("div.updateForm",[
@@ -156,9 +157,9 @@ issueDetail.view = function() {
                                 },"Update")
                         ])
                     ])
-                    
-                ])               
+
+                ])
             ]),
             createTicketModal.view()
-        ] 
+        ]
 };

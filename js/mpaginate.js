@@ -1,3 +1,4 @@
+// thanks to https://github.com/velveteer/mithril-paginate
 var mpaginate = {};
 
 function range(start, stop) {
@@ -29,7 +30,7 @@ mpaginate.controller = function(list, options) {
     // Slice list into pages
     this.paginated = function() {
         return list().slice((this.currentPage()-1) * this.rowsPerPage(),
-            ((this.currentPage()-1)*this.rowsPerPage()) + this.rowsPerPage());
+            (Number(this.currentPage()-1)*this.rowsPerPage()) + Number(this.rowsPerPage()));
     }.bind(this);
 
     // Calculate how many pages to generate
