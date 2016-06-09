@@ -88,7 +88,7 @@ issueDetail.controller = function(){
 function scrollToButtom() {
 	$('body').animate({
     	scrollTop: $(document).height()
-    },1500);
+    },500);
 };
 
 issueDetail.view = function() {
