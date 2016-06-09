@@ -41,6 +41,10 @@ issueDetail.vm = {
             var issue = {};
             issue.notes = issueDetail.vm.textarea()
             data.issue = issue
+            
+            if (/:close/.test(issue.notes)){
+                data.issue.status_id = credential.closeId
+            }
 
             m.request({
                 method: "PUT",
