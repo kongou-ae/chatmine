@@ -176,3 +176,12 @@ p.result {
     background-color: rgba(0,0,0,0.75);
 
 }
+
+.form-horizontal .form-group {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.settingFrom {
+    margin-bottom:15px;
+}
