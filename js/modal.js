@@ -48,8 +48,7 @@ createTicketModal.vm = {
 			createTicketModal.vm.Description("")
 		}.bind(this)
 
-		// Createボタンを押したときの処理
-		// todo:担当を選択しないと、selectMemberがnullになってしまう		
+		// Createボタンを押したときの処理	
 		createTicketModal.vm.create = function(){
             var data = {};
             var issue = {};
@@ -65,9 +64,10 @@ createTicketModal.vm = {
                 config: redmineApiKey,
                 data: data }
             ).then(function(responce){
-				console.log(responce)
 				// bootstrapのアラートメッセージに変更する
 				createTicketModal.vm.result("Create ticket is success.")
+				createTicketModal.vm.title("")
+				createTicketModal.vm.Description("")
 			})			
 		}.bind(this)
 	}
@@ -103,13 +103,9 @@ createTicketModal.view = function(){
 								m("label","Assing to"),
 								m("select.form-control",{
 									onchange:m.withAttr("value",createTicketModal.vm.selectMember)},[
+									m("option",{value:""},"Select the person in charge"),	
 									createTicketModal.vm.membershipAry().map(function(member,idx){
-										//todo:optionの中にselectがでない
-										if (idx == 0){
-											return m("option",{selected:"selected",value:member.userId},member.userName + idx + "selected")
-										} else {
-											return m("option",{value:member.userId},member.userName + idx )
-										}
+										return m("option",{value:member.userId},member.userName)
 									})
 								]),
 							])													
