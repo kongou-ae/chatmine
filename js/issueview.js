@@ -11,18 +11,30 @@ issueView.vm = {
         // todo:100件以上表示できるようにする
         issueView.vm.issuesAry = m.prop([]);
         m.request({
+            // total_countを取得する
             method: "GET",
             url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
             config: redmineApiKey }
         ).then(function(responce){
-            for (var j = 0; j < responce.issues.length; j++){
-                issueView.vm.issuesAry().push(responce.issues[j])
+            var page = Math.ceil(responce.total_count / 100)
+            // これは同期処理になってるのか？？
+            for (var i = 0; i < page; i++ ){
+                m.request({
+                    // total_countを取得する
+                    method: "GET",
+                    url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId") +"&page=" + (i + 1),
+                    config: redmineApiKey }
+                ).then(function(responce){
+                    for (var j = 0; j < responce.issues.length; j++){
+                        issueView.vm.issuesAry().push(responce.issues[j])
+                    }
+                    issueView.vm.issuesAry().sort(function(a,b){
+                        if(a.id < b.id ) return -1;
+                        if(a.id > b.id ) return 1;
+                        return 0
+                    })
+                })
             }
-            issueView.vm.issuesAry().sort(function(a,b){
-                if(a.id < b.id ) return -1;
-                if(a.id > b.id ) return 1;
-                return 0
-            })
         });
     }
 }

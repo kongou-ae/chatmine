@@ -28,7 +28,7 @@ a {
     position: fixed;
     padding-left:25px;
     padding-right:25px;
-    width:250px;
+    width:350px;
     height:100%;
     z-index:0;
 }
@@ -62,7 +62,7 @@ a {
 }
 
 .chatSpace {
-    margin-left: 320px;
+    margin-left: 390px;
 }
 
 .chatSpace span.created_on{
