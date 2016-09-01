@@ -25,12 +25,20 @@ issueDetail.vm = {
             url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
             config: redmineApiKey }
         ).then(function(responce){
+            console.log(responce.issue.journals)
+            responce.issue.journals.sort(function(a,b){
+                if(a.id < b.id ) return -1;
+                if(a.id > b.id ) return 1;
+                return 0
+            })
+
             if ("assigned_to" in responce.issue) {
                 issueDetail.vm.issueDetailAry(responce.issue)
             } else {
                 responce.issue.assigned_to = {name:"None"}
                 issueDetail.vm.issueDetailAry(responce.issue)
             }
+
 
         });
 
@@ -41,7 +49,7 @@ issueDetail.vm = {
             var issue = {};
             issue.notes = issueDetail.vm.textarea()
             data.issue = issue
-            
+
             if (/:close/.test(issue.notes)){
                 data.issue.status_id = credential.closeId
             }
@@ -57,6 +65,11 @@ issueDetail.vm = {
                     url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
                     config: redmineApiKey }
                 ).then(function(responce){
+                    responce.issue.journals.sort(function(a,b){
+                        if(a.id < b.id ) return -1;
+                        if(a.id > b.id ) return 1;
+                        return 0
+                    })
                     if ("assigned_to" in responce.issue) {
                         issueDetail.vm.issueDetailAry(responce.issue)
                         issueDetail.vm.textarea("")
