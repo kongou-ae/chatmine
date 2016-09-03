@@ -17,15 +17,25 @@ projectView.vm = {
             url: "http://localhost:8080/" + redmineUrl + "/projects.json?limit=100",
             config: redmineApiKey }
         ).then(function(responce){
-            for (var j = 0; j < responce.projects.length; j++){
-                projectView.vm.projectAry().push(responce.projects[j])
+            var page = Math.ceil(responce.total_count / 100)
+            // これは同期処理になってるのか？？
+            for (var i = 0; i < page; i++ ){
+                m.request({
+                    method: "GET",
+                    url: "http://localhost:8080/" + redmineUrl + "/projects.json?limit=100" + "&page=" + (i + 1),
+                    config: redmineApiKey }
+                ).then(function(responce){
+                    for (var j = 0; j < responce.projects.length; j++){
+                        projectView.vm.projectAry().push(responce.projects[j])
+                    }
+                    // ソートする
+                    projectView.vm.projectAry().sort(function(a,b){
+                        if(a.id < b.id ) return -1;
+                        if(a.id > b.id ) return 1;
+                        return 0
+                    })
+                })
             }
-            // ソートする
-            projectView.vm.projectAry().sort(function(a,b){
-                if(a.id < b.id ) return -1;
-                if(a.id > b.id ) return 1;
-                return 0
-            })
         });
     }
 }

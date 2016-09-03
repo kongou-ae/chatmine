@@ -1,5 +1,16 @@
 var issueDetail = {};
 
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: true,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false
+});
+
 issueDetail.vm = {
     init: function(){
         var credential = login.model.loadCredential()
@@ -25,7 +36,6 @@ issueDetail.vm = {
             url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
             config: redmineApiKey }
         ).then(function(responce){
-            console.log(responce.issue.journals)
             responce.issue.journals.sort(function(a,b){
                 if(a.id < b.id ) return -1;
                 if(a.id > b.id ) return 1;
@@ -105,6 +115,7 @@ function scrollToButtom() {
 };
 
 issueDetail.view = function() {
+    var note = ""
     return [
             m("div.sidebar-fixed",[
                 m("h1",[
@@ -151,12 +162,18 @@ issueDetail.view = function() {
                 ]),
                 m("div.commentList",[
                     issueDetail.vm.issueDetailAry().journals.map(function(journal){
+                        if (journal.notes){
+                            note = marked(journal.notes)
+                        } else {
+                            note = ""
+                        }
                         return m("div.comment",[
                             m("p",[
                                 m("span.username",journal.user.name + " "),
                                 m("span.created_on",journal.created_on)
                             ]),
-                            m("p.notes",journal.notes)
+                            //m("p.notes",journal.notes)
+                            m.trust(note)
                         ])
                     })
                 ]),
