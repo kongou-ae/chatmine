@@ -77,21 +77,21 @@ login.vm = {
 
             m.request({
                 method: "GET",
-                url: "http://localhost:8080/" + credential.url + "/users/current.json",
+                url: "http://localhost:8081/" + credential.url + "/users/current.json",
                 config: redmineApiKey,
                 unwrapSuccess: function(a,b) {
                     // ユーザ情報を格納
-                    login.model.saveUsername(a.user.login)                    
+                    login.model.saveUsername(a.user.login)
                     m.request({
                         method: "GET",
-                        url:"http://localhost:8080/" + credential.url + "/issue_statuses.json",
+                        url:"http://localhost:8081/" + credential.url + "/issue_statuses.json",
                         config: redmineApiKey,
                         unwrapSuccess: function(a,b) {
                             // ステータスIDを保存
                             login.vm.issuesStatus(login.vm.buildCloseidarray(a.issue_statuses))
-                            login.vm.loginPhase = m.prop("1");                 
+                            login.vm.loginPhase = m.prop("1");
                         }
-                    }) 
+                    })
                }
             })
         }
@@ -99,7 +99,7 @@ login.vm = {
         login.vm.submit2 = function(){
             if ( login.vm.closeId() !== undefined ){
                 login.model.saveCloseid(login.vm.closeId())
-                m.route("/project")            
+                m.route("/project")
             }
         }
     }
@@ -113,10 +113,10 @@ login.controller = function(){
     if (credential.url && credential.key.length === 40 && credential.closeId ){
         m.request({
             method: "GET",
-            url: "http://localhost:8080/" + credential.url + "/users/current.json",
+            url: "http://localhost:8081/" + credential.url + "/users/current.json",
             config: redmineApiKey,
             unwrapSuccess: function(a,b) {
-                m.route("/project")                          
+                m.route("/project")
             }
         })
     }
@@ -124,7 +124,7 @@ login.controller = function(){
 }
 
 login.view = function() {
-    
+
     login.view.selectCloseid = function(){
 
         if (login.vm.loginPhase() == "1" ){
@@ -138,7 +138,7 @@ login.view = function() {
                             },[
                                 m("option",{value:""},"select close code"),
                                 login.vm.issuesStatus().map(function(status,idx){
-                                    return m("option",{value:status.id},status.name )                                    
+                                    return m("option",{value:status.id},status.name )
                                 })
                             ]),
                         ]),
@@ -152,7 +152,7 @@ login.view = function() {
             ]
         }
     }
-    
+
     return [
             m("div.sidebar-fixed",[
                 m("h1",[
@@ -178,7 +178,7 @@ login.view = function() {
                                     oninput:m.withAttr("value", login.vm.redmineApiKey),
                                     value:login.vm.redmineApiKey()
                                 }),
-                        ]),                     
+                        ]),
                         m("button.btn btn-default",{
                             //type:'submit',
                             // bind(this)がないと、クリック前に保存が発動する

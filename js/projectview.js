@@ -14,7 +14,7 @@ projectView.vm = {
         projectView.vm.projectAry = m.prop([]);
         m.request({
             method: "GET",
-            url: "http://localhost:8080/" + redmineUrl + "/projects.json?limit=100",
+            url: "http://localhost:8081/" + redmineUrl + "/projects.json?limit=100",
             config: redmineApiKey }
         ).then(function(responce){
             var page = Math.ceil(responce.total_count / 100)
@@ -22,7 +22,7 @@ projectView.vm = {
             for (var i = 0; i < page; i++ ){
                 m.request({
                     method: "GET",
-                    url: "http://localhost:8080/" + redmineUrl + "/projects.json?limit=100" + "&page=" + (i + 1),
+                    url: "http://localhost:8081/" + redmineUrl + "/projects.json?limit=100" + "&page=" + (i + 1),
                     config: redmineApiKey }
                 ).then(function(responce){
                     for (var j = 0; j < responce.projects.length; j++){

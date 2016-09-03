@@ -16,7 +16,7 @@ credential.view = function() {
 						}
 					})
 				])
-			])	
+			])
 */
     }
 }

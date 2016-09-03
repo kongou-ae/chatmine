@@ -22,7 +22,7 @@ issueDetail.vm = {
         issueDetail.vm.redmineUrl = m.prop(redmineUrl)
         m.request({
             method: "GET",
-            url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
+            url: "http://localhost:8081/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
             config: redmineApiKey }
         ).then(function(responce){
             for (var j = 0; j < responce.issues.length; j++){
@@ -33,7 +33,7 @@ issueDetail.vm = {
         issueDetail.vm.issueDetailAry = m.prop();
         m.request({
             method: "GET",
-            url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
+            url: "http://localhost:8081/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
             config: redmineApiKey }
         ).then(function(responce){
             responce.issue.journals.sort(function(a,b){
@@ -66,13 +66,13 @@ issueDetail.vm = {
 
             m.request({
                 method: "PUT",
-                url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json",
+                url: "http://localhost:8081/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json",
                 config: redmineApiKey,
                 data: data }
             ).then(function(responce){
                 m.request({
                     method: "GET",
-                    url: "http://localhost:8080/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
+                    url: "http://localhost:8081/" + redmineUrl + "/issues/" + m.route.param("issueId") + ".json?include=journals",
                     config: redmineApiKey }
                 ).then(function(responce){
                     responce.issue.journals.sort(function(a,b){

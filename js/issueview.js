@@ -13,7 +13,7 @@ issueView.vm = {
         m.request({
             // total_countを取得する
             method: "GET",
-            url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
+            url: "http://localhost:8081/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId"),
             config: redmineApiKey }
         ).then(function(responce){
             var page = Math.ceil(responce.total_count / 100)
@@ -22,7 +22,7 @@ issueView.vm = {
                 m.request({
                     // total_countを取得する
                     method: "GET",
-                    url: "http://localhost:8080/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId") +"&page=" + (i + 1),
+                    url: "http://localhost:8081/" + redmineUrl + "/issues.json?limit=100&project_id=" + m.route.param("projectId") +"&page=" + (i + 1),
                     config: redmineApiKey }
                 ).then(function(responce){
                     for (var j = 0; j < responce.issues.length; j++){
