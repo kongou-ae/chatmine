@@ -52,7 +52,7 @@ app.on('ready', function() {
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
   var host = '127.0.0.1';
-  var port = 8080;
+  var port = 8081;
   cors_proxy.createServer({
       originWhitelist: [], // Allow all origins
       //requireHeader: ['origin', 'x-requested-with'],
